@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.thebrownarrow.permissionhelper.ActivityManagePermission;
@@ -22,15 +23,26 @@ public class ListFilesActivity extends ActivityManagePermission {
     ListView listFiles;
     ArrayList SavedFiles;
 
+    Button btn_show;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_files);
 
+        btn_show = (Button) findViewById(R.id.btn_files);
         listFiles = (ListView) findViewById(R.id.list);
         SavedFiles = new ArrayList();
 
-        askPermission();
+        btn_show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_show.setVisibility(View.GONE);
+                listFiles.setVisibility(View.VISIBLE);
+                askPermission();
+            }
+        });
+
 
         listFiles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

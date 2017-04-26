@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.ExpandableListView;
 
 import com.thebrownarrow.permissionhelper.ActivityManagePermission;
 import com.thebrownarrow.permissionhelper.PermissionResult;
@@ -14,6 +15,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -22,6 +24,12 @@ public class MainActivity extends ActivityManagePermission {
     File sdcard;
     File file;
     String filepath;
+
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +42,23 @@ public class MainActivity extends ActivityManagePermission {
 
         askPermission();
 
+        // get the listview
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
+        // preparing list data
+        prepareListData();
 
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+
+        // setting list adapter
+        expListView.setAdapter(listAdapter);
+
+    }
+
+    private void prepareListData() {
+
+        listDataHeader.add("0-10");
+        listDataHeader.add("10-20");
 
     }
 
@@ -112,6 +135,7 @@ public class MainActivity extends ActivityManagePermission {
         }
 
         Log.e("tag", countByWords.toString());
+
 
         s.close();
     }
