@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="55dip"
-    android:orientation="vertical" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#aea9a9"
+    android:orientation="vertical"
+    android:gravity="center_vertical" >
 
     <TextView
-        android:id="@+id/lblListItem"
+        android:id="@+id/textSeparator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="17dip"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="header"
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#f4eeee"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#363333"
+        />
 
 </LinearLayout>
